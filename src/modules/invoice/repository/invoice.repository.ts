@@ -10,6 +10,7 @@ export default class InvoiceRepository implements InvoiceGateway {
     await InvoiceModel.create({
       id: invoice.id.id,
       name: invoice.name,
+      document: invoice.document,
       items: invoice.items.map((item) => ({
         id: item.id.id,
         name: item.name,
@@ -51,7 +52,7 @@ export default class InvoiceRepository implements InvoiceGateway {
         invoice.zipcode,
       ),
       createdAt: invoice.createdAt,
-      updatedAt: invoice.createdAt
+      updatedAt: invoice.updatedAt
     })
   }
 }

@@ -2,11 +2,41 @@ import Address from "../../@shared/domain/value-object/address"
 import InvoiceItems from "../domain/invoiceItems.entity"
 
 export interface GenerateInvoiceFacadeInputDto {
-  id?: string
-  name: string
-  document: string
-  address: Address
-  items: InvoiceItems[]
+  name: string;
+  document: string;
+  address: {
+    street: string;
+    number: string;
+    complement: string;
+    city: string;
+    state: string;
+    zipCode: string;
+  }
+  items: {
+    id: string;
+    name: string;
+    price: number;
+  }[];
+}
+
+export interface GenerateInvoiceFacadeOutputDto {
+  id: string;
+  name: string;
+  document: string;
+  address: {
+    street: string;
+    number: string;
+    complement: string;
+    city: string;
+    state: string;
+    zipCode: string;
+  }
+  items: {
+    id: string;
+    name: string;
+    price: number;
+  }[];
+  total: number;
 }
 
 export interface FindInvoiceFacadeInputDto {
@@ -14,16 +44,27 @@ export interface FindInvoiceFacadeInputDto {
 }
 
 export interface FindInvoiceFacadeOutputDto {
-  id: string
-  name: string
-  document: string
-  address: Address
-  items: InvoiceItems[]
-  total: number
-  createdAt: Date
+  id: string;
+  name: string;
+  document: string;
+  address: {
+    street: string;
+    number: string;
+    complement: string;
+    city: string;
+    state: string;
+    zipCode: string;
+  };
+  items: {
+    id: string;
+    name: string;
+    price: number;
+  }[];
+  total: number;
+  createdAt: Date;
 }
 
 export default interface InvoiceFacadeInterface {
-  generate(input: GenerateInvoiceFacadeInputDto): Promise<void>;
+  generate(input: GenerateInvoiceFacadeInputDto): Promise<GenerateInvoiceFacadeOutputDto>;
   find(input: FindInvoiceFacadeInputDto): Promise<FindInvoiceFacadeOutputDto>;
 }

@@ -8,7 +8,7 @@ type InvoiceItemsProps = {
 
 @Table({
   tableName: "invoices",
-  timestamps: true,
+  timestamps: false,
 })
 export default class InvoiceModel extends Model {
   @PrimaryKey
@@ -41,4 +41,10 @@ export default class InvoiceModel extends Model {
 
   @Column({ allowNull: false })
   zipcode: string;
+
+  @Column({ allowNull: false })
+  createdAt: Date;
+
+  @Column({ allowNull: false })
+  updatedAt: Date;
 }

@@ -1,4 +1,3 @@
-import Address from "../../../@shared/domain/value-object/address";
 import InvoiceGateway from "../../gateway/invoice.gateway";
 import { FindInvoiceUseCaseInputDTO, FindInvoiceUseCaseOutputDTO } from "./find-invoice.dto";
 
@@ -16,14 +15,14 @@ export default class FindInvoiceUseCase {
       id: result.id.id,
       name: result.name,
       document: result.document,
-      address: new Address(
-        result.address.street,
-        result.address.number,
-        result.address.complement,
-        result.address.city,
-        result.address.state,
-        result.address.zipCode,
-      ),
+      address: {
+        street: result.address._street,        
+        number: result.address._number,
+        complement: result.address._complement,
+        city: result.address._city,
+        state: result.address._state,
+        zipCode: result.address._zipCode,        
+      },
       items: result.items.map((item) => ({
         id: item.id.id,
         name: item.name,
